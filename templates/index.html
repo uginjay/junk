@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Прототип фактчекинга</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Фактчекинг драфта — прототип</h1>
+    <p class="hint">Введите текст драфта и ключи API. Данные никуда не сохраняются.</p>
+
+    <form id="factForm">
+      <div class="row">
+        <label for="openaiKey">OpenAI API Key</label>
+        <input id="openaiKey" type="password" placeholder="sk-..." required />
+      </div>
+      <div class="row">
+        <label for="yandexUser">Yandex XML user</label>
+        <input id="yandexUser" type="text" placeholder="ваш user" required />
+      </div>
+      <div class="row">
+        <label for="yandexKey">Yandex XML key</label>
+        <input id="yandexKey" type="password" placeholder="ваш key" required />
+      </div>
+      <div class="row">
+        <label for="maxClaims">Макс. фактов</label>
+        <input id="maxClaims" type="number" min="1" max="12" value="6" />
+      </div>
+      <div class="row">
+        <label for="maxResults">Результатов на запрос</label>
+        <input id="maxResults" type="number" min="1" max="10" value="5" />
+      </div>
+      <div class="row">
+        <label for="draft">Драфт текста</label>
+        <textarea id="draft" rows="10" placeholder="Вставьте текст..." required></textarea>
+      </div>
+      <div class="row">
+        <button id="runBtn" type="submit">Запустить фактчекинг</button>
+      </div>
+    </form>
+
+    <div id="status" class="status"></div>
+    <div id="results" class="results"></div>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    // Autofill from localStorage for convenience
+    const openaiKey = localStorage.getItem('openaiKey');
+    const yUser = localStorage.getItem('yandexUser');
+    const yKey = localStorage.getItem('yandexKey');
+    if (openaiKey) document.getElementById('openaiKey').value = openaiKey;
+    if (yUser) document.getElementById('yandexUser').value = yUser;
+    if (yKey) document.getElementById('yandexKey').value = yKey;
+  </script>
+</body>
+</html>

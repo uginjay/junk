@@ -1,0 +1,73 @@
+:root {
+  --bg: #0b0e14;
+  --panel: #111521;
+  --text: #e6e6e6;
+  --muted: #aab0c0;
+  --accent: #5aa9e6;
+  --success: #2ecc71;
+  --error: #e74c3c;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+.container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 20px;
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+}
+h1 { margin-top: 0; }
+.hint { color: var(--muted); margin-bottom: 16px; }
+
+.row { display: flex; flex-direction: column; margin: 10px 0; }
+label { font-weight: 600; margin-bottom: 6px; }
+input, textarea {
+  background: #0e1220;
+  color: var(--text);
+  border: 1px solid #1b2135;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+button {
+  background: var(--accent);
+  color: #0b0e14;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.6; cursor: default; }
+
+.status { margin: 12px 0; color: var(--muted); }
+.status.success { color: var(--success); }
+.status.error { color: var(--error); }
+
+.results { margin-top: 16px; }
+.summary { font-weight: 700; margin-bottom: 10px; }
+.claim {
+  background: #0e1220;
+  border: 1px solid #1b2135;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
+}
+.claim-text { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.verdict { margin: 6px 0; }
+.verdict.supported { color: var(--success); }
+.verdict.refuted { color: var(--error); }
+.verdict.uncertain { color: var(--muted); }
+.rationale { color: var(--muted); margin-bottom: 8px; }
+.section-title { font-weight: 600; margin: 8px 0 4px; }
+.snippet { color: var(--muted); font-size: 14px; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+

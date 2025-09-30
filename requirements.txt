@@ -1,0 +1,5 @@
+Flask==3.0.3
+requests==2.32.3
+openai==1.51.2
+xmltodict==0.13.0
+gunicorn==22.0.0

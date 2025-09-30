@@ -6,22 +6,18 @@
 - ищет подтверждения в интернете через Yandex XML Search (`https://yandex.ru/search/xml`);
 - формирует отчет по фактчекингу (поддержано/опровергнуто/неопределенно) с цитатами.
 
-## Быстрый старт
+## Быстрый старт (локально)
 
-1) Установите Python 3.10+
+1) Python 3.10+
 
-2) Настройте переменные окружения (или заполните `.env`):
+2) Переменные окружения (или `.env`):
 
 ```
 cp .env.example .env
-# отредактируйте .env и вставьте ваши ключи
+# отредактируйте .env: OPENAI_API_KEY, YANDEX_USER, YANDEX_KEY
 ```
 
-Требуются ключи:
-- `OPENAI_API_KEY` — ключ OpenAI (выдадите мне его);
-- `YANDEX_USER` и `YANDEX_KEY` — доступ к Yandex XML Search.
-
-3) Установка зависимостей:
+3) Установка:
 
 ```
 python -m venv .venv
@@ -29,19 +25,44 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4) Запуск сервера разработки:
+4) Запуск:
 
 ```
 uvicorn app.main:app --reload --port 8000
 ```
 
-5) Откройте интерфейс:
+5) Интерфейс: http://127.0.0.1:8000/
 
-- Браузер: http://127.0.0.1:8000/
+## Деплой (Docker)
+
+Сборка и запуск:
+
+```
+docker build -t factcheck-proto .
+docker run --rm -p 8000:8000 \
+  -e OPENAI_API_KEY=sk-... \
+  -e YANDEX_USER=... \
+  -e YANDEX_KEY=... \
+  factcheck-proto
+```
+
+Откройте: http://127.0.0.1:8000/
+
+## Деплой (Render.com)
+
+Вариант 1 — через репозиторий:
+- Подключите репозиторий к Render, выберите "Blueprint" и `render.yaml`
+- Установите `OPENAI_API_KEY`, `YANDEX_USER`, `YANDEX_KEY` в Render → Environment
+
+Вариант 2 — вручную как Docker Web Service:
+- New → Web Service → from repo → Docker
+- Установите переменные окружения:
+  - `OPENAI_API_KEY`
+  - `YANDEX_USER`
+  - `YANDEX_KEY`
+- Порт: `8000` (Render сам передаст `PORT` контейнеру)
 
 ## Переменные окружения
-
-Смотрите `.env.example`:
 
 - `OPENAI_API_KEY`
 - `YANDEX_USER`
@@ -53,6 +74,5 @@ uvicorn app.main:app --reload --port 8000
 
 ## Примечания
 
-- Это прототип. Логика упрощена и может давать неточные результаты.
-- Yandex XML Search может требовать учетную запись/ключ и ограничивать частоту запросов.
-- Модель OpenAI и параметры можно настроить в `app/services/openai_helpers.py`.
+- Проект — прототип. Возможны ошибки и лимиты API.
+- Издержки: OpenAI и XML Search тарифицируются, используйте с ограничениями.

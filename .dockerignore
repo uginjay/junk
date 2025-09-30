@@ -1,0 +1,22 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+.Python
+*.pytest_cache
+.pytest_cache
+
+# Envs & venv
+.env
+.venv
+venv
+ENV/
+
+# VCS
+.git
+.gitignore
+
+# OS
+.DS_Store

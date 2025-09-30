@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: factcheck-prototype
+    env: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SEARCHAPI_KEY
+        sync: false
+      - key: SEARCHAPI_RESULTS
+        value: "5"

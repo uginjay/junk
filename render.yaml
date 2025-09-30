@@ -8,15 +8,7 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false
-      - key: YANDEX_USER
+      - key: SEARCHAPI_KEY
         sync: false
-      - key: YANDEX_KEY
-        sync: false
-      - key: YANDEX_L10N
-        value: ru
-      - key: YANDEX_SORTBY
-        value: rlv
-      - key: YANDEX_FILTER
-        value: strict
-      - key: YANDEX_RESULTS
+      - key: SEARCHAPI_RESULTS
         value: "5"

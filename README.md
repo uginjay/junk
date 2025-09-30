@@ -3,7 +3,7 @@
 Минимальное веб‑приложение, которое:
 - принимает драфт текста;
 - извлекает основные факты/утверждения с помощью OpenAI;
-- ищет подтверждения в интернете через Yandex XML Search (`https://yandex.ru/search/xml`);
+- ищет подтверждения в интернете через SearchAPI.io (`https://www.searchapi.io/`);
 - формирует отчет по фактчекингу (поддержано/опровергнуто/неопределенно) с цитатами.
 
 ## Быстрый старт (локально)
@@ -14,7 +14,7 @@
 
 ```
 cp .env.example .env
-# отредактируйте .env: OPENAI_API_KEY, YANDEX_USER, YANDEX_KEY
+# отредактируйте .env: OPENAI_API_KEY, SEARCHAPI_KEY
 ```
 
 3) Установка:
@@ -41,8 +41,8 @@ uvicorn app.main:app --reload --port 8000
 docker build -t factcheck-proto .
 docker run --rm -p 8000:8000 \
   -e OPENAI_API_KEY=sk-... \
-  -e YANDEX_USER=... \
-  -e YANDEX_KEY=... \
+  -e SEARCHAPI_KEY=sa_live_... \
+  -e SEARCHAPI_RESULTS=5 \
   factcheck-proto
 ```
 
@@ -52,27 +52,23 @@ docker run --rm -p 8000:8000 \
 
 Вариант 1 — через репозиторий:
 - Подключите репозиторий к Render, выберите "Blueprint" и `render.yaml`
-- Установите `OPENAI_API_KEY`, `YANDEX_USER`, `YANDEX_KEY` в Render → Environment
+- Установите `OPENAI_API_KEY`, `SEARCHAPI_KEY` в Render → Environment
 
 Вариант 2 — вручную как Docker Web Service:
 - New → Web Service → from repo → Docker
-- Установите переменные окружения:
+- Переменные окружения:
   - `OPENAI_API_KEY`
-  - `YANDEX_USER`
-  - `YANDEX_KEY`
+  - `SEARCHAPI_KEY`
+  - `SEARCHAPI_RESULTS` (опц.)
 - Порт: `8000` (Render сам передаст `PORT` контейнеру)
 
 ## Переменные окружения
 
 - `OPENAI_API_KEY`
-- `YANDEX_USER`
-- `YANDEX_KEY`
-- `YANDEX_L10N` (по умолчанию `ru`)
-- `YANDEX_SORTBY` (по умолчанию `rlv`)
-- `YANDEX_FILTER` (по умолчанию `strict`)
-- `YANDEX_RESULTS` (по умолчанию `5`)
+- `SEARCHAPI_KEY`
+- `SEARCHAPI_RESULTS` (по умолчанию `5`)
 
 ## Примечания
 
 - Проект — прототип. Возможны ошибки и лимиты API.
-- Издержки: OpenAI и XML Search тарифицируются, используйте с ограничениями.
+- Издержки: OpenAI и SearchAPI.io тарифицируются, используйте с ограничениями.

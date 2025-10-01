@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 0; background: #0b1220; color: #e6eaf2; }
+.container { max-width: 900px; margin: 0 auto; padding: 24px; }
+h1 { margin: 0 0 8px; font-size: 24px; }
+.subtle { color: #98a2b3; margin: 0 0 16px; }
+textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #24324a; background: #0f172a; color: #e6eaf2; }
+.controls { display: flex; gap: 12px; align-items: center; margin: 12px 0 16px; flex-wrap: wrap; }
+.controls label { display: flex; gap: 6px; align-items: center; color: #cbd5e1; }
+.controls input, .controls select { padding: 6px 8px; border-radius: 6px; border: 1px solid #24324a; background: #0f172a; color: #e6eaf2; }
+button { background: #2563eb; color: white; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+button:disabled { opacity: 0.6; cursor: default; }
+.status { margin: 8px 0 16px; color: #cbd5e1; }
+.results { display: grid; gap: 16px; }
+.card { border: 1px solid #24324a; border-radius: 10px; padding: 12px; background: #0f172a; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-right: 8px; }
+.badge.supported { background: #064e3b; color: #bbf7d0; }
+.badge.refuted { background: #7f1d1d; color: #fecaca; }
+.badge.unclear { background: #3f3f46; color: #e4e4e7; }
+.cite { color: #93c5fd; text-decoration: none; }
+.cite:hover { text-decoration: underline; }
+.small { color: #94a3b8; font-size: 12px; }

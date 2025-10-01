@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фактчекинг текста</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Фактчекинг текста</h1>
+            <p class="subtitle">Проверка фактов в тексте с помощью AI и поиска в интернете</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="textInput">Введите текст для проверки:</label>
+                <textarea 
+                    id="textInput" 
+                    placeholder="Вставьте текст, содержащий факты, которые нужно проверить..."
+                    rows="8"
+                ></textarea>
+                <button id="checkButton" onclick="checkFacts()">Проверить факты</button>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Анализируем текст и проверяем факты...</p>
+            </div>
+
+            <div id="results" class="results" style="display: none;">
+                <h2>Результаты проверки</h2>
+                <div id="resultsContent"></div>
+            </div>
+
+            <div id="error" class="error" style="display: none;"></div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

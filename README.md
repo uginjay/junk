@@ -33,6 +33,31 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 - `app/services/search.py` — поиск через searchapi.io
 - `public/*` — статический фронтенд
 
+## Деплой на Render
+
+Вариант A. Через Blueprint (`render.yaml`):
+
+1. Репозиторий должен содержать `render.yaml` в корне.
+2. В Render: New + -> Blueprints -> выберите репозиторий.
+3. Укажите переменные окружения сервиса:
+   - `OPENAI_API_KEY`
+   - `SEARCHAPI_API_KEY`
+4. Запустится сборка: `pip install -r requirements.txt`
+5. Старт команды: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+
+Вариант B. Через Web Service вручную:
+
+1. New + -> Web Service -> подключите репозиторий.
+2. Runtime: Python
+3. Build Command: `pip install -r requirements.txt`
+4. Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+5. Environment Variables: задайте `OPENAI_API_KEY`, `SEARCHAPI_API_KEY`
+
+Файлы для Render:
+- `render.yaml` — конфигурация Blueprint
+- `Procfile` — процесс веб-сервиса (для совместимости)
+- `runtime.txt` — желаемая версия Python
+
 ## Примечания
 - Прототип. Без сложной обработки ошибок, логирования и кеша.
 - Для продакшена рекомендованы: ограничение токенов, очереди, ретраи, нормализация источников.

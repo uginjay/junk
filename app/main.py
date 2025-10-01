@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from pathlib import Path
 
 from app.services.llm import LLMClient
 from app.services.search import search_with_searchapi
@@ -16,7 +17,8 @@ load_dotenv()
 app = FastAPI(title="FactCheck Prototype")
 
 # Serve static assets from /assets and index from /
-PUBLIC_DIR = "/workspace/public"
+BASE_DIR = Path(__file__).resolve().parent.parent
+PUBLIC_DIR = str(BASE_DIR / "public")
 app.mount("/assets", StaticFiles(directory=PUBLIC_DIR), name="assets")
 
 
